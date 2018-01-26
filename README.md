@@ -2,7 +2,7 @@
 
 
 ## What is it?
-CheckYourShelf is a library administration tool developed by UCSB students in conjunction with UCSB library staff. Through the use of [Google's Cloud Vision API](https://cloud.google.com/vision/), library employees can use their phones to scan books that must be borrowed or were placed out of order on the shelf.
+CheckYourShelf is a library administration tool developed by UCSB students in conjunction with UCSB library staff. Through the use of [Google's Text Vision API](https://developers.google.com/vision/text-overview), library employees can use their phones to scan books that must be borrowed or were placed out of order on the shelf.
 
 ## Contacts
 Written by:  
