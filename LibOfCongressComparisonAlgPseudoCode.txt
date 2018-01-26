@@ -1,0 +1,30 @@
+Public int compareTo (other) {
+	Mylineone, mylinetwo, mylinethree;
+	Otherlineone, otherlinetwo, otherlinethree;
+
+	Split lineones by letter
+	(is L greater than or less than LA? Jk yes it is i found online)
+	For each letter from left to right, looping num times of least num letters between mine and other:
+		If my letter greater than other letter, return 1 (my is greater)
+
+	Split linetwos by character
+	Convert to ints, b/c these always just numbers
+	If my num greater than other num, return 1 (my is greater);
+
+	Split linetwos by character
+	For each character that is a letter:
+		If my char is greater (earlier in alphabet) than others, mine is greater, return one;
+	For each char that is a number (if all the letters were the same)
+		Compare as decimal
+		(look at each num from left to right. If mine is bigger return one. If all the same
+		But one of the numbers has trailing ints, then the one with trailing is bigger)
+
+
+	If all this is still equal, look at last line
+	According to library of congress website this will be year of publication? So simply see if 
+	Mine is bigger. If so return 1 if not return -1.
+	If all this equal return 0 because equal.
+	
+
+
+}
