@@ -1,0 +1,15 @@
+Use Cases/User Stories
+
+Who will be using the app?
+Manager/Library Storage System
+Library Employee
+
+You can ask what they would like the user interface to be? Anything on top of just a simple screen with a section showing the camera input, and some sound or buzzing when books are out of order
+Boss mentioned that the top priority should be efficient shelf reading. Simply shelf reading as quick as possible. That would be the most used function
+
+Some ideas and tasks:
+Create algorithm to determine order
+Successfully and with ease read in a call number to the camera, compare it with the previous, and alert user of its correctness
+Create a start-up screen
+Create an elegant UI for the camera process
+Tell user where incorrectly shelved book should go (like say move this book back 3 spaces to the after this certain book)
