@@ -1,0 +1,38 @@
+User Questions and Stories
+
+STUDENT WORKERS
+
+Stories
+
+When I am checking shelves, I want to check books quickly and accurately so that I can do more important things
+
+While I am checking shelves, I want __________ so that _________
+
+
+Q/A
+
+What is the typical process you go by when you are checking shelves?
+
+What is the most frustrating part about your work?
+
+If you could change something about that process, what would it be?
+
+Is there any other part of your work that you wish was less frustrating?
+
+
+
+ADMIN
+
+Stories
+
+	When using the app I want to know what shelves were checked so that I don’t waste people’s time
+
+Q/A
+
+What is the most frustrating thing about your shelf checking system right now?
+
+If you could change something about that process, what would it be?
+
+How often do you need your shelves checked?
+
+Are there any features that you would really like to see? e.g. website visualization, connectivity with the library’s current system, etc.
