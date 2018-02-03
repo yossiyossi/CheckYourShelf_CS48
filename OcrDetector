@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) The Android Open Source Project
  *
@@ -22,7 +21,12 @@ import android.util.SparseArray;
 
 import com.google.android.gms.samples.vision.ocrreader.ui.camera.GraphicOverlay;
 import com.google.android.gms.vision.Detector;
+import com.google.android.gms.vision.text.Line;
 import com.google.android.gms.vision.text.TextBlock;
+
+import java.util.List;
+
+import static java.lang.Math.min;
 
 /**
  * A very simple Processor which gets detected TextBlocks and adds them to the overlay
@@ -53,14 +57,43 @@ public class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
                 Log.d("OcrDetectorProcessor", "Text detected! " + item.getValue());
             }
             OcrGraphic graphic = new OcrGraphic(mGraphicOverlay, item);
-            if (item.getValue().equals("GREAT")){
+            if (item.getValue().equals("15")){
                 graphic.makeRed();
             } else{
                 graphic.setColor(Color.WHITE);
             }
             mGraphicOverlay.add(graphic);
         }
+        compare(items.get(0), items.get(1));
     }
+
+    //returns 1 if t2 > t1
+    public static void compare(TextBlock t1, TextBlock t2){
+        //list of lines for t1
+        List<Line> lines1 = (List<Line>) t1.getComponents();
+        for(Line elements : lines1){
+            Log.i("current lines ", ": " + elements.getValue());
+        }
+
+        //list of lines for t2
+        List<Line> lines2 = (List<Line>) t1.getComponents();
+        for(Line elements : lines2){
+            Log.i("current lines ", ": " + elements.getValue());
+        }
+
+//        Split lineones by letter
+//        (is L greater than or less than LA? Jk yes it is i found online)
+//        For each letter from left to right, looping num times of least num letters between mine and other:
+//        If my letter greater than other letter, return 1 (my is greater)
+        Line l1 = lines1.get(0);
+        Log.i("current line l1 value ", ": " + l1.getValue());
+        Line l2 = lines2.get(0);
+        List charsl1 = l1.getComponents();
+        Log.i("line l1 character(0) ", ": " + charsl1.get(0));
+        List charsl2 = l2.getComponents();
+
+    }
+
 
     /**
      * Frees the resources associated with this detection processor.
