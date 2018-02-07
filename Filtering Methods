@@ -9,6 +9,8 @@ Call Number Characteristics:
     - Combination of letters and numbers
 - Fourth Line (if it exists)
     - Publishing year
+- Fifth Line (if it exists)
+    - Volume (V.12)
 
 TextBlock
 - Text blocks consist of a list of Line objects
@@ -33,7 +35,7 @@ Proposed Solution:
      * @param b
      * @return true if valid instance of LC code
      */
-    public boolean isValidCallNumber(TextBlock b) {
+    public boolean isValidCallNumber(TextBlock b) {   
         List<? extends Text> lines = b.getComponents();
 
         if (lines.size() > 5 || lines.size() < 2) {
@@ -41,7 +43,7 @@ Proposed Solution:
         }
 
         int i = 0;
-        while (lines != null & lines.get(i) != null) {
+        while (lines != null & lines.get(i) != null & i < lines.size()) {
             if (isLetters(lines.get(0).getValue())) {
                 lines.remove(0);
             } else if (isNums(lines.get(0).getValue())) {
