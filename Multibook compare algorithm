@@ -1,0 +1,51 @@
+ public ArrayList<String> compare(SparseArray<TextBlock> items) {
+        Log.d("Found", "compare");
+        ArrayList<String> out_of_order = new ArrayList<String>();
+        int compare_at = 0;
+        for (int i = 0; i < items.size(); i++) {
+            if (compare_at == i + 1){
+                return out_of_order;
+            }
+            TextBlock item1 = items.valueAt(compare_at);
+            TextBlock item2 = items.valueAt(i + 1);
+            Log.d("Found:", item1.getValue() + "," + item2.getValue());
+            if (psuedo_sort(item1, item2) == false){
+                Log.d("Found: ", "out of order");
+                out_of_order.add(item2.getValue());
+            }
+            else{
+                Log.d("Found: ", "not out of order");
+                compare_at = i + 1;
+            }
+
+
+        }
+        return out_of_order;
+    }
+    // TODO:  Once this implements Detector.Processor<TextBlock>, implement the abstract methods.
+
+    @Override
+    public void receiveDetections(Detector.Detections<TextBlock> detections) {
+        mGraphicOverlay.clear();
+        ArrayList<String> sequence = new ArrayList<String>();
+        SparseArray<TextBlock> items = detections.getDetectedItems();
+        ArrayList<String> out_of_order = compare(items);
+        for (int i = 0; i < out_of_order.size(); i++) {
+            Log.d("out of order: ", out_of_order.get(i));
+        }
+        for (int i = 0; i < items.size(); ++i) {
+            TextBlock item = items.valueAt(i);
+            if (!sequence.contains(item.getValue())) {
+                //Log.i("", "item added" + item.getValue());
+                       sequence.add(item.getValue());
+                  }
+            if (item != null && item.getValue() != null) {
+                List<Line> lines = (List<Line>) item.getComponents();
+                for (Line elements : lines) {
+                   // Log.i("Current line" , elements.getValue());
+                }
+                //Log.d("Processor", "Text detected! " + item.getValue());
+            }
+            OcrGraphic graphic = new OcrGraphic(mGraphicOverlay, item);
+            mGraphicOverlay.add(graphic);
+        }
