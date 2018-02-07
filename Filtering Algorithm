@@ -1,0 +1,82 @@
+Call Number Characteristics:
+- Will always be at least 3 lines
+    - Usually 4-5
+- First line consists of 1-2 letters
+    - Going to have to skip most of these
+- Second Line
+    - Single number (decimal)
+- Third Line (may be up to like 4 of these lines)
+    - Combination of letters and numbers
+- Fourth Line (if it exists)
+    - Publishing year
+
+TextBlock
+- Text blocks consist of a list of Line objects
+- TextLines consist of a list of Element objects
+
+Proposed Solution:
+- Check each line and make sure it contains what its supposed to 
+    - = valid call number
+    - isValidCallNumber
+- Compare some number of the detections to see if they match
+    - If they match then that is our call number
+    - Could cause issues if detecting multiple call numbers at once
+    - Text block .equals method
+- Write a regular expression to compare to?
+    - Need to read up on java regular expressions
+- Put a certain number of detections in a list and compare them all and choose the ones that are most common
+
+
+
+//UNTESTED....PHONES ARE GARBAGE VERY HARD TO TEST WITH
+
+Boolean isValidCallNumber(TextBlock b) {       //THIS FUNCTION IS VERY SLOPPY, LOOKING FOR SUGGESTIONS TO CLEAN IT UP A LITTLE
+List<? Extends Text> lines = b.getComponents()
+
+if lines.size() > 5 || lines.size() < 2 {
+	Return false
+}
+
+int i = 0;
+while(lines != null & lines.get(i) != null) {
+	if (isLetters(lines[0].getValue())) { lines.remove(0) }
+	else if (isNumber(lines[0].getValue())) {i++}
+	else { return false }
+  
+	if (lines[i] is letter/num combo) {i++}    //need to code letter number combo function
+	else if (isDate(lines[i])) {return true}
+	else { return false; }
+
+
+Helper Functions:
+
+Boolean isOneLine(List<? extends Text> lines) {
+if (lines.size() < 2) { return true; }
+else { return false; }	
+}
+
+Boolean isDate(Line l) {
+	List<? extends Text> elements = l.getcomponents();
+	if(!isNums(l.getValue()) { return false; }
+	else if(elements.size() != 4) { return false; }
+	else { return true; }
+}
+	
+Boolean isLetters(String S) {
+	for (int i = 0; i < S.length(); i++) {
+		if (!Character.isLetter(string.charAt(i))) {
+			return false;
+		}
+	}
+	return true;
+}
+
+Boolean isNums(String S) {
+	for (int i = 0; i < S.length(); i++) {
+		if (!Character.isDigit(string.charAt(i))) {
+			return false;
+		}
+	}
+	return true;
+}
+
