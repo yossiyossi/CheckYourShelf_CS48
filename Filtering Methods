@@ -30,7 +30,7 @@ Proposed Solution:
 
 
 
-  /**
+    /**
      *
      * @param b
      * @return true if valid instance of LC code
@@ -38,25 +38,43 @@ Proposed Solution:
     public boolean isValidCallNumber(TextBlock b) {
         List<? extends Text> lines = b.getComponents();
 
-        if (lines.size() > 5 || lines.size() < 2) {
+        if (lines.size() > 6 || lines.size() < 2) {
             return false;
+        }
+
+        if (isLetters(lines.get(0).getValue())) {
+            lines.remove(0);
+           // Log.d("Letters", "Letters Detected, Deleted index 0, New index: " + lines.get(0).getValue());
         }
 
         int i = 0;
         while (lines != null & lines.get(i) != null & i < lines.size() - 1) {
-            if (isLetters(lines.get(0).getValue())) {
-                lines.remove(0);
-            } else if (isNums(lines.get(0).getValue())) {
+
+            if (isNums(lines.get(0).getValue())) {
                 i++;
-            } else { return false; }
+                //Log.d("Numbers", "Numbers Detected, Incremented i");
+            } else {
+                //Log.d("False", "First If else statement false");
+                return false;
+
+            }
 
             if (isLetterNumberCombo(lines.get(i).getValue())) {
                 i++;
+                //Log.d("Letters and numbers", "Letters and numbersDetected, Incremented i");
             } else if (isDate(lines.get(i).getValue())) {  //Needs to be edited for vol. after date
                 return true;
-            } else { return false; }
+            } else {
+              //  Log.d("False2", "Second if else false");
+                return false;
+            }
         }
         return true;
+    }
+
+    public boolean isVol(String S) {
+        if (S.charAt(0) == 'v' || S.charAt(0) == 'V') { return true; }
+            else { return false; }
     }
 
     /**
@@ -102,7 +120,7 @@ Proposed Solution:
      */
     public boolean isNums(String S) {
         for (int i = 0; i < S.length(); i++) {
-            if (!Character.isDigit(S.charAt(i))) {
+            if (!Character.isDigit(S.charAt(i)) & S.charAt(i) != '.') {
                 return false;
             }
         }
