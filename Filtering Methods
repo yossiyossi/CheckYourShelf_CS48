@@ -28,7 +28,7 @@ Proposed Solution:
 
 
 
-Boolean isValidCallNumber(TextBlock b) {       //THIS FUNCTION IS VERY SLOPPY, LOOKING FOR SUGGESTIONS TO CLEAN IT UP A LITTLE
+public boolean isValidCallNumber(TextBlock b) {       //THIS FUNCTION IS VERY SLOPPY, LOOKING FOR SUGGESTIONS TO CLEAN IT UP A LITTLE
 List<? Extends Text> lines = b.getComponents()
 
 if lines.size() > 5 || lines.size() < 2 {
@@ -48,19 +48,19 @@ while(lines != null & lines.get(i) != null) {
 
 Helper Functions:
 
-Boolean isOneLine(List<? extends Text> lines) {
+public boolean isOneLine(List<? extends Text> lines) {
 if (lines.size() < 2) { return true; }
 else { return false; }	
 }
 
-Boolean isDate(Line l) {
+public boolean isDate(Line l) {
 	List<? extends Text> elements = l.getcomponents();
 	if(!isNums(l.getValue()) { return false; }
 	else if(elements.size() != 4) { return false; }
 	else { return true; }
 }
 	
-Boolean isLetters(String S) {
+public boolean isLetters(String S) {
 	for (int i = 0; i < S.length(); i++) {
 		if (!Character.isLetter(S.charAt(i))) {
 			return false;
@@ -69,7 +69,7 @@ Boolean isLetters(String S) {
 	return true;
 }
 
-Boolean isNums(String S) {
+public boolean isNums(String S) {
 	for (int i = 0; i < S.length(); i++) {
 		if (!Character.isDigit(S.charAt(i))) {
 			return false;
@@ -78,7 +78,7 @@ Boolean isNums(String S) {
 	return true;
 }
 
-Boolean isLetterNumberCombo(String S) {
+public boolean isLetterNumberCombo(String S) {
 	Boolean letter, number;
 	for (int i = 0; i < S.length(); i++) {
 		if (Character.isDigit(S.charAt(i))) {
