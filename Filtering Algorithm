@@ -64,7 +64,7 @@ Boolean isDate(Line l) {
 	
 Boolean isLetters(String S) {
 	for (int i = 0; i < S.length(); i++) {
-		if (!Character.isLetter(string.charAt(i))) {
+		if (!Character.isLetter(S.charAt(i))) {
 			return false;
 		}
 	}
@@ -73,7 +73,7 @@ Boolean isLetters(String S) {
 
 Boolean isNums(String S) {
 	for (int i = 0; i < S.length(); i++) {
-		if (!Character.isDigit(string.charAt(i))) {
+		if (!Character.isDigit(S.charAt(i))) {
 			return false;
 		}
 	}
