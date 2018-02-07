@@ -28,68 +28,103 @@ Proposed Solution:
 
 
 
-public boolean isValidCallNumber(TextBlock b) {       //THIS FUNCTION IS VERY SLOPPY, LOOKING FOR SUGGESTIONS TO CLEAN IT UP A LITTLE
-List<? Extends Text> lines = b.getComponents()
+    /**
+     * 
+     * @param b
+     * @return true if valid instance of LC code
+     */
+    public boolean isValidCallNumber(TextBlock b) {
+        List<? extends Text> lines = b.getComponents();
 
-if lines.size() > 5 || lines.size() < 2 {
-	Return false
-}
+        if (lines.size() > 5 || lines.size() < 2) {
+            return false;
+        }
 
-int i = 0;
-while(lines != null & lines.get(i) != null) {
-	if (isLetters(lines[0].getValue())) { lines.remove(0) }
-	else if (isNumber(lines[0].getValue())) { i++; }
-	else { return false; }
-  
-	if (isLetterNumberCombo(lines[i].getValue())) { i++; }
-	else if (isDate(lines[i])) { return true; }
-	else { return false; }
+        int i = 0;
+        while (lines != null & lines.get(i) != null) {
+            if (isLetters(lines.get(0).getValue())) {
+                lines.remove(0);
+            } else if (isNums(lines.get(0).getValue())) {
+                i++;
+            } else { return false; }
 
+            if (isLetterNumberCombo(lines.get(i).getValue())) {
+                i++;
+            } else if (isDate(lines.get(i).getValue())) {
+                return true;
+            } else { return false; }
+        }
+    }
 
 Helper Functions:
+    /**
+     * 
+     * @param lines
+     * @return true if detection is only one line, false otherwise
+     */
+    public boolean isOneLine(List<? extends Text> lines) {
+        if (lines.size() < 2) { return true; }
+        else { return false; }
+    }
 
-public boolean isOneLine(List<? extends Text> lines) {
-if (lines.size() < 2) { return true; }
-else { return false; }	
+    /**
+     * 
+     * @param S
+     * @return returns true of it is in the format of a date, could be improved by filtering for only certain dates 
+     * ie) 1800 to 2100
+     */
+    public boolean isDate(String S) {
+        if(!isNums(S)) { return false; }
+	    else if(S.length() != 4) { return false; }
+        else { return true; }
+    }
+
+    /**
+     * 
+     * @param S
+     * @return true if given S consists of only letters
+     */
+    public boolean isLetters(String S) {
+        for (int i = 0; i < S.length(); i++) {
+            if (!Character.isLetter(S.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * 
+     * @param S
+     * @return true if S consists of only numbers
+     */
+    public boolean isNums(String S) {
+        for (int i = 0; i < S.length(); i++) {
+            if (!Character.isDigit(S.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * 
+     * @param S
+     * @return return true if S consists of letters and numbers
+     */
+    public boolean isLetterNumberCombo(String S) {
+        Boolean letter = false;
+        Boolean number = false;
+
+        for (int i = 0; i < S.length(); i++) {
+            if (Character.isDigit(S.charAt(i))) {
+                number = true;
+            }
+            else if (Character.isLetter(S.charAt(i))) {
+                letter = true;
+            }
+        }
+        if (letter == true & number == true) { return true; }
+        else { return false; }
+    }
 }
-
-public boolean isDate(Line l) {
-	List<? extends Text> elements = l.getcomponents();
-	if(!isNums(l.getValue()) { return false; }
-	else if(elements.size() != 4) { return false; }
-	else { return true; }
-}
-	
-public boolean isLetters(String S) {
-	for (int i = 0; i < S.length(); i++) {
-		if (!Character.isLetter(S.charAt(i))) {
-			return false;
-		}
-	}
-	return true;
-}
-
-public boolean isNums(String S) {
-	for (int i = 0; i < S.length(); i++) {
-		if (!Character.isDigit(S.charAt(i))) {
-			return false;
-		}
-	}
-	return true;
-}
-
-public boolean isLetterNumberCombo(String S) {
-	Boolean letter, number;
-	for (int i = 0; i < S.length(); i++) {
-		if (Character.isDigit(S.charAt(i))) {
-			number = true;
-		}
-		else if (Character.isLetter(S.charAt(i))) {
-			letter = true;
-		}
-	}
-	If (letter == true & number == true) { return true; }
-	Else { return false; }
-}
-
-
