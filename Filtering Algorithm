@@ -28,8 +28,6 @@ Proposed Solution:
 
 
 
-//UNTESTED....PHONES ARE GARBAGE VERY HARD TO TEST WITH
-
 Boolean isValidCallNumber(TextBlock b) {       //THIS FUNCTION IS VERY SLOPPY, LOOKING FOR SUGGESTIONS TO CLEAN IT UP A LITTLE
 List<? Extends Text> lines = b.getComponents()
 
@@ -40,11 +38,11 @@ if lines.size() > 5 || lines.size() < 2 {
 int i = 0;
 while(lines != null & lines.get(i) != null) {
 	if (isLetters(lines[0].getValue())) { lines.remove(0) }
-	else if (isNumber(lines[0].getValue())) {i++}
-	else { return false }
+	else if (isNumber(lines[0].getValue())) { i++; }
+	else { return false; }
   
-	if (lines[i] is letter/num combo) {i++}    //need to code letter number combo function
-	else if (isDate(lines[i])) {return true}
+	if (isLetterNumberCombo(lines[i].getValue())) { i++; }
+	else if (isDate(lines[i])) { return true; }
 	else { return false; }
 
 
@@ -79,4 +77,19 @@ Boolean isNums(String S) {
 	}
 	return true;
 }
+
+Boolean isLetterNumberCombo(String S) {
+	Boolean letter, number;
+	for (int i = 0; i < S.length(); i++) {
+		if (Character.isDigit(S.charAt(i))) {
+			number = true;
+		}
+		else if (Character.isLetter(S.charAt(i))) {
+			letter = true;
+		}
+	}
+	If (letter == true & number == true) { return true; }
+	Else { return false; }
+}
+
 
