@@ -30,6 +30,12 @@ Proposed Solution:
 
 
 
+
+ALL METHODS TO BE PLACED IN OCRDETECTORPROCESSOR.JAVA
+Plan: In method recieveDetections, call isValidCallNumber(item)
+      if it returns true, add the item to a list of accepted items, which will then have the ordering algorithms run on it
+      if it returns false, ignore that detection and move on to the next one
+
     /**
      *
      * @param b
