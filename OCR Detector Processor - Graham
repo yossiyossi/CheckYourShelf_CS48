@@ -1,6 +1,6 @@
-/* Graham Foster
+/*
  * Copyright (C) The Android Open Source Project
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -194,15 +194,21 @@ public class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
     public boolean psuedo_sort(TextBlock lhs, TextBlock rhs){
         if (rhs != null && rhs.getValue() != null && lhs != null && lhs.getValue() != null) {
             List<Line> llines = (List<Line>) lhs.getComponents();
-            List<Element> lelement = (List<Element>) llines.get(0).getComponents();
             List<Line> rlines = (List<Line>) rhs.getComponents();
-            List<Element> relement = (List<Element>) rlines.get(0).getComponents();
             // Log.d("Found: ", "first" + llines.get(0).getValue());
             //Log.d("Found: ", "second" + rlines.get(0).getValue());
 
-            if (llines.get(0).getValue().compareToIgnoreCase(rlines.get(0).getValue()) > 0) {
-                return false;
+            int i = 0;
+            while(i < llines.size() && i < rlines.size()) {
+                if (llines.get(i).getValue().compareToIgnoreCase(rlines.get(i).getValue()) > 0) {
+                    return false;
+                }
+                else { ++i; }
             }
+
+            /*if (llines.get(0).getValue().compareToIgnoreCase(rlines.get(0).getValue()) > 0) {
+                return false;
+            }*/
         }
         return true;
     }
