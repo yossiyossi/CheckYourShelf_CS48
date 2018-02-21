@@ -1,0 +1,47 @@
+ public boolean psuedo_sort(TextBlock lhs, TextBlock rhs){
+        if (rhs != null && rhs.getValue() != null && lhs != null && lhs.getValue() != null) {
+            List<Line> llines = (List<Line>) lhs.getComponents();
+            List<Line> rlines = (List<Line>) rhs.getComponents();
+            Log.d("debug", "first" + llines.get(0).getValue());
+            Log.d("debug", "second" + rlines.get(0).getValue());
+
+            int i = 0;
+            while(i < llines.size() && i < rlines.size()) {
+                //compare first line numerically
+                if (i == 0)
+                {
+                    Log.d("debug", "comparing first line" + llines.get(i).getValue() + " " + rlines.get(i).getValue());
+                    if (llines.get(i).getValue().compareToIgnoreCase(rlines.get(i).getValue()) > 0) {
+                        Log.d("debug", "left greater than right");
+                        return false;
+                    }
+                }
+                //compare the lines after the first by their letters and then their numbers as decimal ignore last line because it is a year number
+                if (i > 0 && i < llines.size() -1 )
+                {
+                    Log.d("debug", "comparing next line");
+                    String[] split_left = llines.get(i).getValue().split("(?<=\\D)(?=\\d)");
+                    String[] split_right = rlines.get(i).getValue().split("(?<=\\D)(?=\\d)");
+                    float right_numbers = parseFloat("." + split_right[1]);
+                    float left_numbers = parseFloat("." + split_left[1]);
+                    Log.d("debug", split_left[0] + "," + split_right[0] + "," + left_numbers + "," + right_numbers);
+                    if (split_left[0].compareToIgnoreCase(split_right[0]) > 0) {
+                        Log.d("debug", "comparing" + split_left[0] + split_right[0]);
+                        return false;
+                    }
+
+                    if (left_numbers > right_numbers) {
+                        Log.d("debug", "comparing" + left_numbers + right_numbers);
+                        return false;
+                    }
+                }
+
+                 ++i;
+            }
+
+            /*if (llines.get(0).getValue().compareToIgnoreCase(rlines.get(0).getValue()) > 0) {
+                return false;
+            }*/
+        }
+        return true;
+    }
