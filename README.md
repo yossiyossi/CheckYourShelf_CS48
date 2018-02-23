@@ -11,6 +11,9 @@ https://github.com/yossiyossi/OCRLibraryCodeScanner
 The apk for this version is included in this repo. To run it on an android phone, download the file to the phone and run it (with given permissions that it asks for).
 You also have to enable "downloads from outside sources" or "allow third party software" in the settings of the android phone.
 
+## Test document with example Library Book Codes:
+https://docs.google.com/document/d/1xKMpt_mZ0A4clakn4iFfUF_7CwSgYrhjLNFqRHaMzX8/edit?usp=sharing
+
 ## Contacts
 Written by:  
 
