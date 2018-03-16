@@ -7,6 +7,7 @@ CheckYourShelf is a library administration tool developed by UCSB students in co
 ## Link to Repo Containing Actual Android Studio Project with finalized code for this iteration:
 Old Versions:
 https://github.com/yossiyossi/OCRLibraryCodeScanner
+
 Final Version:
 https://github.com/yossiyossi/OCRLibraryCodeScannerFinal
 
